@@ -1,0 +1,6 @@
+[0]% curl -s --user 'api:9bd1ab640f70b7b9a9f58b0a680dbed2-7bbbcb78-c8acf306' \
+    https://api.mailgun.net/v3/sandboxc8a4962c075f4e0e98e9af401c063edb.mailgun.org/messages \
+    -F from='postmaster@sandboxc8a4962c075f4e0e98e9af401c063edb.mailgun.org' \
+    -F to=jason@slamomatic.com \
+    -F subject='Hello' \
+    -F text='Testing some Mailgun awesomeness!'
