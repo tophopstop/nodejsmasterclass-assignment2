@@ -4,3 +4,7 @@
     -F to=jason@slamomatic.com \
     -F subject='Hello' \
     -F text='Testing some Mailgun awesomeness!'
+
+how to run global stuff
+
+NODE_DEBUG=request NODE_PATH=/Users/jason/.nvm/versions/node/v8.11.4/lib/node_modules node ./testMailgun.js
