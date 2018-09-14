@@ -1,11 +1,11 @@
 
-https://stripe.com/docs/api#charge_object
-curl https://api.stripe.com/v1/charges \
-   -u sk_test_K9qwwgMqzMHt9s1E6FTuoKE2: \
-   -d amount=2000 \
-   -d currency=usd \
-   -d source=tok_visa \
-   -d description="Charge for jenny.rosen@example.com"
+//https://stripe.com/docs/api#charge_object
+//curl https://api.stripe.com/v1/charges \
+   //-u sk_test_K9qwwgMqzMHt9s1E6FTuoKE2: \
+   //-d amount=2000 \
+   //-d currency=usd \
+   //-d source=tok_visa \
+   //-d description="Charge for jenny.rosen@example.com"
 
 var https = require('https');
 var querystring = require('querystring');
@@ -14,10 +14,10 @@ var helpers = require('../lib/helpers');
 var StringDecoder = require('string_decoder').StringDecoder;
 
 var payload = {
-    'card[number]' : '4242424242424242',
-    'card[exp_month]' : '12',
-    'card[exp_year]' : '2019',
-    'card[cvc]' : '123',
+    'currency' : 'usd',
+    'amount' : '4750',
+    'source' : 'tok_1D9tY8D8QKoOrsG5jQlVr7cM',
+    'description' : 'Pizza Order: 12323',
 };
 
 var stringPayload = querystring.stringify(payload);
@@ -27,7 +27,7 @@ var requestDetails = {
     'protocol' : 'https:',
     'hostname' : 'api.stripe.com',
     'method' : 'POST',
-    'path' : '/v1/tokens',
+    'path' : '/v1/charges',
     'auth' : config.stripe.secret,
     'headers' : {
         'Content-Type' : 'application/x-www-form-urlencoded',
@@ -50,9 +50,9 @@ var req = https.request(requestDetails,function(res){
     });
     res.on('end', function() {
        buffer += decoder.end();
-        //console.log('full response from stripe: '+buffer);
+        console.log('full response from stripe: '+buffer);
         var j = helpers.parseJsonToObject( buffer );
-        console.log('token id: '+j.id);
+        console.log('charge id: '+j.id);
     });
 
 });
