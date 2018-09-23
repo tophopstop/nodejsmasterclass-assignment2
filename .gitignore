@@ -1,3 +1,4 @@
 *.sw?
 .data/*
 .DS_Store
+secrets.js
