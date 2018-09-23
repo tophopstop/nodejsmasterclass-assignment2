@@ -1,4 +1,6 @@
 
+var confirmationEmail = require('../lib/confirmationEmail');
+
 var orderObject = {
     items: [
         {
@@ -21,38 +23,5 @@ var orderObject = {
     orderId: 'ijh86kfolt093nchbk'
 };
 
-
-
-function makeConfirmationBody( o ) {
-
-    console.log('in make...');
-
-    var s = '';
-
-    s+='Thanks again for your order!\n\n';
-
-    s+='Order Number: ' + o.orderId + '\n\n';
-
-    s+='Order Details:\n';
-    s+='------------------------------------\n';
-
-    o.items.forEach(function(v,i){
-        s+= v.name + ' ('+ currencyFormat(v.cost)+') x ' + v.quantity + ' = ' + currencyFormat(v.lineTotal) + '\n';
-    });
-
-    s+='------------------------------------\n';
-    s+='Order Total: '+ currencyFormat(o.total)+'\n\n';
-
-    s+='Please call again soon!\n';
-
-    return s;
-
-}
-
-function currencyFormat( m ) {
-    var d = m/100;
-    return '$' + d.toFixed(2);
-}
-
-var b = makeConfirmationBody(orderObject);
+var b = confirmationEmail.make(orderObject);
 console.log(b);
