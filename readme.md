@@ -59,7 +59,7 @@ Requires Token: No
 ##### PUT 
 
 Create a token for a user.
-Required fields: (in JSON payload) `id`, `extend`, `email`
+Required fields: (in JSON payload) `email`, `extend`
 Requires Token: Yes 
 
 ##### DELETE
