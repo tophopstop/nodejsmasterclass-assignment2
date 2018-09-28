@@ -35,14 +35,14 @@ Retrieve data for an existing user as JSON.
 Required fields: (in CGI parameter) `email`
 Requires Token: Yes
 
-##### PUT -
+##### PUT
 
 Update an existing user.
-Required fields: `email`
-Optional fields: `name`, `address`, `password` (at least one must be specified)
+Required fields: (in JSON payload) `email`
+Optional fields: (in JSON payload) `name`, `address`, `password` (at least one must be specified)
 Requires Token: Yes
 
-##### DELETE - email
+##### DELETE
 
 Delete an existing user.
 Required fields: (in CGI parameter) `email`
@@ -50,23 +50,50 @@ Requires Token: Yes
 
 #### Tokens
 
-* POST
-// Required data: email, password
-* PUT 
-// Required data: id, extend
-* DELETE - email
+##### POST
+
+Create a token for a user.
+Required fields: (in JSON payload) `email`, `password`
+Requires Token: No
+
+##### PUT 
+
+Create a token for a user.
+Required fields: (in JSON payload) `id`, `extend`, `email`
+Requires Token: Yes 
+
+##### DELETE
+
+Remove a token for a user.
+Required fields: (in JSON payload) `email`
+Requires Token: Yes 
 
 #### Menu
 
-* GET
+##### GET
+
+Get pizza menu. Returns a JSON object containing menu information.
+Required fields: (in CGI parameter) `email`
+Requires Token: Yes
 
 #### Cart
 
-* POST
+##### POST
 
-// Required data: email, item, quantity
-* GET - email 
+Add a menu item to the user's cart.
+Required fields: (in JSON payload) `email`, `item`, `quantity`
+Requires Token: Yes 
+
+##### GET
+
+Fetch the cart for the user. Returns a JSON object containing cart information.
+Required fields: (in CGI parameter) `email`
+Requires Token: Yes
 
 #### Order
 
-* POST - email
+##### POST
+
+Make an order for the user using their current cart contents and account information on file.
+Required fields: (in JSON payload) `email`
+Requires Token: Yes 
